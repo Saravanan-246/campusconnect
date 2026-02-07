@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from './app/AuthContext';
+import { AuthProvider } from './app/AuthContext';
 import ProtectedRoute from './app/ProtectedRoute';
 import Sidebar from './components/layout/Sidebar';
 import Header from './components/layout/Header';
@@ -325,9 +326,11 @@ const AppContent: React.FC = () => {
 
 const App = () => {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   );
 };
 
